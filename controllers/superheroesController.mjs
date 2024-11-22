@@ -33,7 +33,12 @@ if (superheroes.length > 0) {
 
 export const buscarSuperheroesPorAtributoController = async (req, res) => {
    const { atributo, valor } = req.params;
- 
+   const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
+   if (superheroes.length > 0) {
+    res.send(renderizarListaSuperheroes(superheroes));
+ } else {
+    res.status(404).send({ mensaje: "No se encontraron superhéroes con ese atributo" });
+ }
    try {
      let filtro;
  

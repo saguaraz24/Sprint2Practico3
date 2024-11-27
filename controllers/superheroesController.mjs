@@ -8,6 +8,9 @@ from '../views/responseView.mjs';
 export async function obtenerSuperheroePorIdController(req, res) {
 const { id } = req.params;
 const superheroe = await obtenerSuperheroePorId(id);
+console.log(`Controlador: Solicitando mostrar información de los superhéroes con edad: ${id}`);
+
+
 
 if (superheroe) {
    res.send(renderizarSuperheroe(superheroe));
@@ -16,7 +19,7 @@ if (superheroe) {
 }
 }
 
-console.log(`Ruta: Recibiendo solicitud GET para superhéroe con Edad:` )
+//console.log(`Ruta: Recibiendo solicitud GET para superhéroe con Edad:` )
 
 export async function obtenerTodosLosSuperheroesController(req, res) {
 const superheroes = await obtenerTodosLosSuperheroes();
@@ -29,6 +32,7 @@ const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
 
 if (superheroes.length > 0) {
    res.send(renderizarListaSuperheroes(superheroes));
+   console.log(`Servicio: Solicitando mostrar información de superhéroes con edad: ${valor}`);
 } else {
    res.status(404).send({ mensaje: "No se encontraron superhéroes con ese atributo" });
 }

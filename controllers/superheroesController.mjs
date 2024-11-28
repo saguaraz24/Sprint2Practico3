@@ -5,10 +5,39 @@ from '../services/superheroesService.mjs';
 import { renderizarSuperheroe, renderizarListaSuperheroes } 
 from '../views/responseView.mjs';
 
+//*********** */
+//import SuperHero from '../models/SuperHero.mjs'; // Modelo de Mongoose
+
+/**
+ * Controlador para crear un nuevo superhéroe  *** crearSuperheroeController
+ */
+export async function crearNuevoSuperHeroeController(req, res) {
+    try {
+        // Crear un nuevo documento basado en el modelo
+        const nuevoSuperheroe = new SuperHero(req.body);
+
+        // Guardar el superhéroe en la base de datos
+        const superheroeGuardado = await nuevoSuperheroe.save();
+
+        // Responder con el superhéroe creado
+        res.status(201).json({
+            mensaje: 'Superhéroe creado con éxito',
+            superheroe: superheroeGuardado,
+        });
+    } catch (error) {
+        console.error('Error al crear el superhéroe:', error);
+        res.status(500).json({
+            mensaje: 'Error al crear el superhéroe',
+            error: error.message,
+        });
+    }
+};
+
+
 export async function obtenerSuperheroePorIdController(req, res) {
 const { id } = req.params;
 const superheroe = await obtenerSuperheroePorId(id);
-console.log(`Controlador: Solicitando mostrar información de los superhéroes con edad: ${id}`);
+
 
 
 
@@ -19,7 +48,7 @@ if (superheroe) {
 }
 }
 
-//console.log(`Ruta: Recibiendo solicitud GET para superhéroe con Edad:` )
+
 
 export async function obtenerTodosLosSuperheroesController(req, res) {
 const superheroes = await obtenerTodosLosSuperheroes();
@@ -37,40 +66,6 @@ if (superheroes.length > 0) {
    res.status(404).send({ mensaje: "No se encontraron superhéroes con ese atributo" });
 }
 }
-
-// export const buscarSuperheroesPorAtributoController = async (req, res) => {
-//    const { atributo, valor } = req.params;
-//    const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
-//    if (superheroes.length > 0) {
-//     res.send(renderizarListaSuperheroes(superheroes));
-    
-//  } else {
-//     res.status(404).send({ mensaje: "No se encontraron superhéroes con ese atributo" });
-//  }
-//    try {
-//      let filtro;
- 
-//      if (atributo === 'edad') {
-//        // Convertir valor a número y validar
-//        const edad = parseInt(valor, 10);
-//        if (isNaN(edad)) {
-//          return res.status(400).json({ error: 'El valor de edad debe ser un número válido.' });
-//        }
-//        filtro = { [atributo]: edad };
-//      } else {
-//        // Usar el valor directamente para otros atributos
-//        filtro = { [atributo]: valor };
-//      }
-     
-//      const resultados = await SuperHero.find(filtro);
-//      res.json(resultados);
-//      console.log('Filtro recibido:', filtro);
-//    } catch (error) {
-//      console.error('Error en la búsqueda:', error);
-//      res.status(500).json({ error: 'Error al realizar la búsqueda.' });
-//    }
-//  };
- 
 
 export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
 const superheroes = await obtenerSuperheroesMayoresDe30();

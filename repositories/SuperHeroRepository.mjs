@@ -12,18 +12,18 @@ class SuperHeroRepository extends IRepository {
     }
 
     async buscarPorAtributo(atributo, valor) {
+        let query;
+      
+        // Verificar si el valor es numérico
         if (!isNaN(valor)) {
-            query = { [atributo]: Number(valor) }; // Convertir el valor a número y buscar una coincidencia exacta
-          } else {
-            query = { [atributo]: new RegExp(valor, 'i') }; // Usar expresión regular para cadenas de texto
-          }
-       // const query = { [atributo]: new RegExp(valor, 'i') };
-        console.log(query);
+          query = { [atributo]: Number(valor) }; // Convertir el valor a número y buscar una coincidencia exacta
+        } else {
+          query = { [atributo]: new RegExp(valor, 'i') }; // Usar expresión regular para cadenas de texto
+        }
+      
         return await SuperHero.find(query);
-    }
-
-    //*******const query = { [atributo]: new RegExp(valor, 'i') }; */
-
+      }
+   
     async obtenerMayoresDe30() {
         return await SuperHero.find({ edad: { $gt: 30 }, planetaOrigen: 'Tierra', poderes: { $size: { $gte: 2 } } });
     }

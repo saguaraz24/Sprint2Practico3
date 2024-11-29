@@ -9,6 +9,7 @@ export async function obtenerTodosLosSuperheroes() {
 }
 
 export async function buscarSuperheroesPorAtributo(atributo, valor) {
+    console.log(`Servicio: Solicitando mostrar información de superhéroes con edad: ${valor}`);
     return await superHeroRepository.buscarPorAtributo(atributo, valor);
 }
 

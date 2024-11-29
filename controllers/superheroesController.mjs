@@ -38,12 +38,17 @@ export async function obtenerSuperheroePorIdController(req, res) {
 const { id } = req.params;
 const superheroe = await obtenerSuperheroePorId(id);
 
+
+
+
 if (superheroe) {
    res.send(renderizarSuperheroe(superheroe));
 } else {
    res.status(404).send({ mensaje: "Superhéroe no encontrado" });
 }
 }
+
+
 
 export async function obtenerTodosLosSuperheroesController(req, res) {
 const superheroes = await obtenerTodosLosSuperheroes();
@@ -56,6 +61,7 @@ const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
 
 if (superheroes.length > 0) {
    res.send(renderizarListaSuperheroes(superheroes));
+   console.log(`Servicio: Solicitando mostrar información de superhéroes con edad: ${valor}`);
 } else {
    res.status(404).send({ mensaje: "No se encontraron superhéroes con ese atributo" });
 }

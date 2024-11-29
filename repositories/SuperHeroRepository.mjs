@@ -12,7 +12,12 @@ class SuperHeroRepository extends IRepository {
     }
 
     async buscarPorAtributo(atributo, valor) {
-        const query = { [atributo]: new RegExp(valor, 'i') };
+        if (!isNaN(valor)) {
+            query = { [atributo]: Number(valor) }; // Convertir el valor a número y buscar una coincidencia exacta
+          } else {
+            query = { [atributo]: new RegExp(valor, 'i') }; // Usar expresión regular para cadenas de texto
+          }
+       // const query = { [atributo]: new RegExp(valor, 'i') };
         console.log(query);
         return await SuperHero.find(query);
     }

@@ -13,7 +13,7 @@ const superheroSchema = new mongoose.Schema(
     enemigos: [String],  
     createdAt: { type: Date, default: Date.now }  
   },  
-  { collection: 'Grupo-18' } // Cambia aquí si es necesario  
+  { collection: 'Grupo-09' } // Cambia aquí si es necesario  
 );  
 
 export default mongoose.model('SuperHero', superheroSchema);

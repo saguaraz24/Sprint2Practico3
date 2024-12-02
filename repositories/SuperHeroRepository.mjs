@@ -1,6 +1,6 @@
 import SuperHero from '../models/SuperHero.mjs';
 import IRepository from '../IRepository.mjs';
-import { query } from 'express';
+
 
 class SuperHeroRepository extends IRepository {
     async obtenerPorId(id) {
@@ -24,8 +24,6 @@ class SuperHeroRepository extends IRepository {
       
         return await SuperHero.find(query);
       }
-
-    //*******const query = { [atributo]: new RegExp(valor, 'i') }; */
 
     async obtenerMayoresDe30() {
         return await SuperHero.find({ edad: { $gt: 30 }, planetaOrigen: 'Tierra', poderes: { $size: { $gte: 2 } } });

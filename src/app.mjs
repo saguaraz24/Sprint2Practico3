@@ -16,7 +16,7 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
-  console.log(`Servidor Carriendo en http://localhost:${PORT}`);
-  console.log(`Ctrl+C para bajar servidor`);
+  console.log(`Escuchando en puerto ${PORT}`);
+  console.log(`Corriendo en http://localhost:${PORT}`);
+  
 });

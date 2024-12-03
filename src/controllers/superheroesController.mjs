@@ -32,3 +32,4 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
     const superheroes = await obtenerSuperheroesMayoresDe30();
     res.send(renderizarListaSuperheroes(superheroes));
 }
+

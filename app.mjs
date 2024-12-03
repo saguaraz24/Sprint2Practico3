@@ -1,16 +1,16 @@
 import express from 'express';
 import { connectDB } from './config/dbConfig.mjs';
 import superHeroRoutes from './routes/superHeroRoutes.mjs';
-//const app = express();
-//const PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 ///////************ */
-import blogRouter from './routes/blog.js'; // Importamos el módulo de rutas 
-const app = 
-express(); 
-app.use('/blogs', blogRouter); // Asignamos las rutas al prefijo '/blogs' 
-const PORT = 3000; 
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`)); 
+// import blogRouter from './routes/blog.mjs'; // Importamos el módulo de rutas 
+// const app = 
+// express(); 
+// app.use('/blogs', blogRouter); // Asignamos las rutas al prefijo '/blogs' 
+// const PORT = 3000; 
+// app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`)); 
 
 ///////////********* */
 

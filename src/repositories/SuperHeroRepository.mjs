@@ -22,9 +22,19 @@ class SuperHeroRepository extends IRepository {
     return await SuperHero.find(query);
   }
  
-  async obtenerMayoresDe30() {
-    return await SuperHero.find({ edad: { $gt: 30 }, planetaOrigen: 'Tierra', poderes: { $size: { $gte: 2 }}});
-  }
+   async obtenerMayoresDe30() {
+    
+  //   return await SuperHero.find({ edad: { $gt: 30 }, planetaOrigen: 'Tierra', poderes: { $size: { $gte: 2 }}});
+  // }
+  return await SuperHero.find({
+    $and: [
+      { edad: { $gt: 30 } },
+      { planetaOrigen: 'Tierra' },
+      { poderes: { $exists: true, $not: { $size: 0 } } }, // Verifica que poderes sea un arreglo no vacío
+    ],
+  })
+  
+}
 }
 
 export default new SuperHeroRepository();

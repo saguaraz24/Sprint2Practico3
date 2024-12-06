@@ -3,6 +3,7 @@ import superHeroRepository from "../repositories/SuperHeroRepository.mjs";
 //const superHeroRepository = new SuperHeroRepository();
 
 export async function obtenerSuperheroePorId(id) {
+  console.log(`Estoy en el servicio ${id}`)
   return await superHeroRepository.obtenerPorId(id);
 }
 

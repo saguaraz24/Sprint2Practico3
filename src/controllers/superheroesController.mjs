@@ -2,7 +2,9 @@ import { obtenerSuperheroePorId, obtenerTodosLosSuperheroes, buscarSuperheroePor
 import { renderizarListaSuperheroes, renderizarSuperheroe } from "../views/responseView.mjs";
   
 export async function obtenerSuperheroePorIdController(req, res) {
-    const { id } = req.params;
+  console.log(req.params)
+    const  id  = req.params.id;
+    console.log(`Estoy en el controlador de obtener por id ${id}`)
     const superheroe = await obtenerSuperheroePorId(id);
     if(superheroe) {
       res.send(renderizarSuperheroe(superheroe));

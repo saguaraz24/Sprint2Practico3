@@ -3,6 +3,8 @@ import IRepository from "./IRepository.mjs";
 
 class SuperHeroRepository extends IRepository {
   async obtenerPorId(id) {
+    console.log(`Estoy en el Repositorio ${id}`)
+   
     return await SuperHero.findById(id);
   }
 

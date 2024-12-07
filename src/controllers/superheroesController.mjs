@@ -35,3 +35,26 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
     res.send(renderizarListaSuperheroes(superheroes));
 }
 
+function validarNombreSuperheroe(nombreSuperheroe) {
+  // Elimina espacios en blanco al inicio y al final
+  const nombre = nombreSuperheroe.trim();
+
+  // Verifica si está vacío
+  if (!nombre) {
+      return "El nombre del superhéroe es requerido.";
+  }
+
+  // Verifica la longitud mínima y máxima
+  if (nombre.length < 3) {
+      return "El nombre del superhéroe debe tener al menos 3 caracteres.";
+  }
+  if (nombre.length > 60) {
+      return "El nombre del superhéroe no puede exceder los 60 caracteres.";
+  }
+
+  // Si pasa todas las validaciones
+  return null; // Sin errores
+}
+
+
+
